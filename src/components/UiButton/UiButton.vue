@@ -1,6 +1,6 @@
 <template>
   <button :class="$style.button" :data-layout="props.layout" :disabled="props.isDisabled" :type="props.type">
-    <slot></slot>
+    <slot>Моя кнопка</slot>
   </button>
 </template>
 
@@ -29,7 +29,7 @@ const props = withDefaults(defineProps<IProps>(), {
   font-size: 1rem;
   line-height: 1.5;
   color: var(--color-white);
-  background: var(--color-primary);
+  background: #4ecdc4; 
   border-radius: 16px;
 
   &[data-layout='secondary'] {
