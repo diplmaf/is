@@ -14,9 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue'
-
-const props = defineProps({
+defineProps({
   modelValue: {
     type: String,
     required: true,
@@ -39,29 +37,29 @@ defineEmits(['update:modelValue'])
 
 .ui-select {
   position: relative;
+}
 
-  &__control {
-    width: 100%;
-    padding: $padding-md;
-    border: 1px solid $border-color;
-    border-radius: $border-radius;
-    font-size: $font-size-md;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background: white url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 0.75rem center / 0.75em auto;
-    cursor: pointer;
+.ui-select__control {
+  width: 100%;
+  padding: $padding-md;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  font-size: $font-size-md;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: white url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 0.75rem center / 0.75em auto;
+  cursor: pointer;
+}
 
-    &:focus {
-      outline: none;
-      border-color: $primary;
-      box-shadow: $shadow-sm;
-    }
+.ui-select__control:focus {
+  outline: none;
+  border-color: $primary;
+  box-shadow: $shadow-sm;
+}
 
-    &--disabled {
-      background-color: $bg-light;
-      cursor: not-allowed;
-    }
-  }
+.ui-select__control--disabled {
+  background-color: $bg-light;
+  cursor: not-allowed;
 }
 </style>
