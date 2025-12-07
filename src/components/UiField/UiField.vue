@@ -15,7 +15,7 @@ defineProps({
 </script>
 
 <style scoped lang="scss">
-@use '../styles/colors' as *;
+@use '../styles/colors.scss' as *;
 
 .ui-field {
   display: flex;
