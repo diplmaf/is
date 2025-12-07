@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
+import { h } from 'vue'
 import UiField from './UiField.vue'
 import UiInput from '../UiInput/UiInput.vue'
 
@@ -18,16 +19,15 @@ type Story = StoryObj<typeof UiField>
 export const WithLabel: Story = {
   args: {
     label: 'E-mail',
+    modelValue: '',
   },
-  render: (args) => ({
-    components: { UiField, UiInput },
-    setup() {
-      return { args }
-    },
-    template: 
-      <UiField v-bind="args">
-        <UiInput v-model="args.modelValue" placeholder="Введите email" />
-      </UiField>
-    ,
-  }),
+  render: (args) => {
+    return h(UiField, { label: args.label }, {
+      default: () => h(UiInput, {
+        modelValue: args.modelValue,
+        'onUpdate:modelValue': (value: string) => { args.modelValue = value },
+        placeholder: 'Введите email'
+      })
+    })
+  }
 }
