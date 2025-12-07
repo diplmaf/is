@@ -28,7 +28,7 @@ defineEmits(['update:modelValue'])
 </script>
 
 <style scoped lang="scss">
-@use '../styles/colors.scss' as *;
+@use '../../styles/colors.scss' as *;
 
 .ui-input {
   width: 100%;
