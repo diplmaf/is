@@ -10,9 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-
-const props = defineProps({
+defineProps({
   variant: {
     type: String,
     default: 'primary',
@@ -30,8 +28,6 @@ const props = defineProps({
 })
 
 defineEmits(['click'])
-
-const variantClass = computed(() => ui-button--${props.variant})
 </script>
 
 <style scoped lang="scss">
@@ -44,28 +40,28 @@ const variantClass = computed(() => ui-button--${props.variant})
   cursor: pointer;
   font-size: $font-size-md;
   transition: all 0.2s ease;
+}
 
-  &:disabled {
-    opacity: 0.65;
-    cursor: not-allowed;
-  }
+.ui-button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
 
-  &--primary {
-    background-color: $primary;
-    color: white;
+.ui-button--primary {
+  background-color: $primary;
+  color: white;
+}
 
-    &:hover:not(:disabled) {
-      background-color: darken($primary, 10%);
-    }
-  }
+.ui-button--primary:hover:not(:disabled) {
+  background-color: darken($primary, 10%);
+}
 
-  &--secondary {
-    background-color: $secondary;
-    color: white;
+.ui-button--secondary {
+  background-color: $secondary;
+  color: white;
+}
 
-    &:hover:not(:disabled) {
-      background-color: darken($secondary, 10%);
-    }
-  }
+.ui-button--secondary:hover:not(:disabled) {
+  background-color: darken($secondary, 10%);
 }
 </style>
