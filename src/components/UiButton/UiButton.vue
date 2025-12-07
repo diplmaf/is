@@ -1,41 +1,71 @@
 <template>
-  <button :class="$style.button" :data-layout="props.layout" :disabled="props.isDisabled" :type="props.type">
-    <slot>Моя кнопка</slot>
+  <button
+    :class="['ui-button', ui-button--${variant}]"
+    :disabled="isDisabled"
+    :type="type"
+    @click="$emit('click')"
+  >
+    <slot />
   </button>
 </template>
 
 <script setup lang="ts">
-interface IProps {
-  layout?: 'primary' | 'secondary';
-  type?: 'submit' | 'button';
-  isDisabled?: boolean;
-}
+import { computed } from 'vue'
 
-const props = withDefaults(defineProps<IProps>(), {
-  layout: 'primary',
-  type: 'button',
-});
+const props = defineProps({
+  variant: {
+    type: String,
+    default: 'primary',
+    validator: (v: string) => ['primary', 'secondary'].includes(v),
+  },
+  isDisabled: {
+    type: Boolean,
+    default: false,
+  },
+  type: {
+    type: String,
+    default: 'button',
+    validator: (v: string) => ['submit', 'button', 'reset'].includes(v),
+  },
+})
+
+defineEmits(['click'])
+
+const variantClass = computed(() => ui-button--${props.variant})
 </script>
 
-<style module lang="scss">
-.button {
-  position: relative;
-  display: inline-flex;
-  gap: 8px;
-  align-items: center;
-  justify-content: center;
-  height: 40px;
-  padding: 16px 32px;
-  font-size: 1rem;
-  line-height: 1.5;
-  color: var(--color-white);
-  background: #4ecdc4; 
-  border-radius: 16px;
+<style scoped lang="scss">
+@use '../styles/colors' as *;
 
-  &[data-layout='secondary'] {
-    color: var(--color-primary);
-    background-color: var(--color-transparent);
-    border-color: var(--color-primary);
+.ui-button {
+  padding: $padding-md;
+  border: none;
+  border-radius: $border-radius;
+  cursor: pointer;
+  font-size: $font-size-md;
+  transition: all 0.2s ease;
+
+  &:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+
+  &--primary {
+    background-color: $primary;
+    color: white;
+
+    &:hover:not(:disabled) {
+      background-color: darken($primary, 10%);
+    }
+  }
+
+  &--secondary {
+    background-color: $secondary;
+    color: white;
+
+    &:hover:not(:disabled) {
+      background-color: darken($secondary, 10%);
+    }
   }
 }
 </style>
