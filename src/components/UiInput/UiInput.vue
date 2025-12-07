@@ -9,9 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue'
-
-const props = defineProps({
+defineProps({
   modelValue: {
     type: String,
     required: true,
@@ -39,16 +37,16 @@ defineEmits(['update:modelValue'])
   border-radius: $border-radius;
   font-size: $font-size-md;
   transition: border-color 0.2s ease;
+}
 
-  &:focus {
-    outline: none;
-    border-color: $primary;
-    box-shadow: $shadow-sm;
-  }
+.ui-input:focus {
+  outline: none;
+  border-color: $primary;
+  box-shadow: $shadow-sm;
+}
 
-  &--disabled {
-    background-color: $bg-light;
-    cursor: not-allowed;
-  }
+.ui-input--disabled {
+  background-color: $bg-light;
+  cursor: not-allowed;
 }
 </style>
