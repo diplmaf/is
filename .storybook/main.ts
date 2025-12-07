@@ -1,19 +1,17 @@
-// eslint-disable-next-line unicorn/prefer-node-protocol
-import path from 'path';
-import type { StorybookConfig } from '@storybook/vue3-vite';
+import { defineConfig } from '@storybook/vue3'
 
-// eslint-disable-next-line unicorn/prefer-module
-const requirePath = typeof require === 'undefined' ? import.meta : require;
-
-function getAbsolutePath(packageName: string) {
-  return path.dirname(requirePath.resolve(path.join(packageName, 'package.json'))).replace(/^file:\/\//, '');
-}
-
-const config: StorybookConfig = {
-  framework: { name: getAbsolutePath('@storybook/vue3-vite'), options: {} },
-  stories: ['../src/docs/*.mdx', '../src/**/*.stories.ts'],
-  addons: ['@storybook/addon-docs'],
-  core: { disableTelemetry: true, disableWhatsNewNotifications: true },
-};
-
-export default config;
+export default defineConfig({
+  stories: ['../src/**/*.stories.@(js|jsx|ts|tsx|vue)'],
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-interactions',
+  ],
+  framework: {
+    name: '@storybook/vue3',
+    options: {}
+  },
+  core: {
+    builder: '@storybook/builder-vite',
+  },
+})
