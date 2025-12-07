@@ -1,25 +1,44 @@
-import { Meta, StoryObj } from '@storybook/vue3';
-
-import { UiButton } from '..';
-import { html } from '../../helpers';
+import type { Meta, StoryObj } from '@storybook/vue3'
+import UiButton from './UiButton.vue'
 
 const meta: Meta<typeof UiButton> = {
+  title: 'Components/UiButton',
   component: UiButton,
-  args: {},
+  tags: ['autodocs'],
   argTypes: {
-    layout: {
+    variant: {
+      control: { type: 'select' },
       options: ['primary', 'secondary'],
     },
+    isDisabled: { control: 'boolean' },
+    type: {
+      control: { type: 'select' },
+      options: ['submit', 'button'],
+    },
   },
-};
+}
 
-export default meta;
+export default meta
 
-export const Primary: StoryObj<typeof UiButton> = {
-  render: (args) => ({
-    components: { UiButton },
-    setup: () => ({ args }),
+type Story = StoryObj<typeof UiButton>
 
-    template: html` <UiButton v-bind="args">Текст</UiButton>`,
-  }),
-};
+export const Primary: Story = {
+  args: {
+    variant: 'primary',
+    children: 'Кнопка',
+  },
+}
+
+export const Secondary: Story = {
+  args: {
+    variant: 'secondary',
+    children: 'Кнопка',
+  },
+}
+
+export const Disabled: Story = {
+  args: {
+    isDisabled: true,
+    children: 'Кнопка',
+  },
+}
