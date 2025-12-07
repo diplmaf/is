@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import UiField from './UiField.vue'
-import UiInput from './UiInput.vue'
+import UiInput from '../UiInput/UiInput.vue'
 
 const meta: Meta<typeof UiField> = {
   title: 'Components/UiField',
