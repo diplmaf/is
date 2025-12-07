@@ -6,9 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
-
-const props = defineProps({
+defineProps({
   label: {
     type: String,
     default: '',
@@ -23,10 +21,10 @@ const props = defineProps({
   display: flex;
   flex-direction: column;
   gap: $padding-sm;
+}
 
-  &__label {
-    font-size: $font-size-sm;
-    color: $text-secondary;
-  }
+.ui-field__label {
+  font-size: $font-size-sm;
+  color: $text-secondary;
 }
 </style>
