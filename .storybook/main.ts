@@ -1,6 +1,6 @@
-import { defineConfig } from '@storybook/vue3'
+import type { StorybookConfig } from '@storybook/vue3'
 
-export default defineConfig({
+const config: StorybookConfig = {
   stories: ['../src/**/*.stories.@(js|jsx|ts|tsx|vue)'],
   addons: [
     '@storybook/addon-links',
@@ -9,9 +9,14 @@ export default defineConfig({
   ],
   framework: {
     name: '@storybook/vue3',
-    options: {}
+    options: {},
   },
   core: {
     builder: '@storybook/builder-vite',
   },
-})
+  docs: {
+    autodocs: true,
+  },
+}
+
+export default config
