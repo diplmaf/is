@@ -31,7 +31,7 @@ defineEmits(['click'])
 </script>
 
 <style scoped lang="scss">
-@use '../styles/colors' as *;
+@use '../styles/colors.scss' as *;
 
 .ui-button {
   padding: $padding-md;
