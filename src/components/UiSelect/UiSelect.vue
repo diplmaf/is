@@ -33,7 +33,7 @@ defineEmits(['update:modelValue'])
 </script>
 
 <style scoped lang="scss">
-@use '../styles/colors.scss' as *;
+@use '../../styles/colors.scss' as *;
 
 .ui-select {
   position: relative;
