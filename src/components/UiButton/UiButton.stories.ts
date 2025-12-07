@@ -25,20 +25,38 @@ type Story = StoryObj<typeof UiButton>
 export const Primary: Story = {
   args: {
     variant: 'primary',
-    children: 'Кнопка',
   },
+  render: (args) => ({
+    components: { UiButton },
+    setup() {
+      return { args }
+    },
+    template: `<UiButton v-bind="args">Кнопка</UiButton>`,
+  }),
 }
 
 export const Secondary: Story = {
   args: {
     variant: 'secondary',
-    children: 'Кнопка',
   },
+  render: (args) => ({
+    components: { UiButton },
+    setup() {
+      return { args }
+    },
+    template: `<UiButton v-bind="args">Кнопка</UiButton>`,
+  }),
 }
 
 export const Disabled: Story = {
   args: {
     isDisabled: true,
-    children: 'Кнопка',
   },
+  render: (args) => ({
+    components: { UiButton },
+    setup() {
+      return { args }
+    },
+    template: `<UiButton v-bind="args">Кнопка</UiButton>`,
+  }),
 }
