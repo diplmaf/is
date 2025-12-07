@@ -1,6 +1,6 @@
 <template>
   <button
-    :class="['ui-button', ui-button--${variant}]"
+    :class="['ui-button', `ui-button--${variant}`]"
     :disabled="isDisabled"
     :type="type"
     @click="$emit('click')"
