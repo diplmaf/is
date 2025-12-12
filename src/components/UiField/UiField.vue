@@ -1,30 +1,38 @@
 <template>
   <div class="ui-field">
-    <label v-if="label" class="ui-field__label">{{ label }}</label>
-    <slot />
+    <label v-if="label" class="ui-field__label">
+      {{ label }}
+    </label>
+    <div class="ui-field__content">
+      <slot />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-defineProps({
-  label: {
-    type: String,
-    default: '',
-  },
-})
+interface Props {
+  label?: string
+}
+
+defineProps<Props>()
 </script>
 
-<style scoped lang="scss">
-@use '../../styles/colors.scss' as *;
-
+<style scoped>
 .ui-field {
   display: flex;
   flex-direction: column;
-  gap: $padding-sm;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .ui-field__label {
-  font-size: $font-size-sm;
-  color: $text-secondary;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin-bottom: 0.25rem;
+}
+
+.ui-field__content {
+  width: 100%;
 }
 </style>
