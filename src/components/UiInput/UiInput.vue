@@ -1,52 +1,67 @@
 <template>
   <input
-    :class="['ui-input', { 'ui-input--disabled': isDisabled }]"
     :value="modelValue"
-    :placeholder="placeholder"
     :disabled="isDisabled"
-    @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
+    :placeholder="placeholder"
+    :data-disabled="isDisabled"
+    class="ui-input"
+    @input="handleInput"
+    @change="handleChange"
   />
 </template>
 
 <script setup lang="ts">
-defineProps({
-  modelValue: {
-    type: String,
-    required: true,
-  },
-  isDisabled: {
-    type: Boolean,
-    default: false,
-  },
-  placeholder: {
-    type: String,
-    default: '',
-  },
-})
+interface Props {
+  modelValue: string
+  isDisabled?: boolean
+  placeholder?: string
+}
 
-defineEmits(['update:modelValue'])
+interface Emits {
+  (e: 'update:modelValue', value: string): void
+  (e: 'change', event: Event): void
+}
+
+const props = defineProps<Props>()
+const emit = defineEmits<Emits>()
+
+const handleInput = (event: Event) => {
+  const target = event.target as HTMLInputElement
+  emit('update:modelValue', target.value)
+}
+
+const handleChange = (event: Event) => {
+  emit('change', event)
+}
 </script>
 
-<style scoped lang="scss">
-@use '../../styles/colors.scss' as *;
-
+<style scoped>
 .ui-input {
   width: 100%;
-  padding: $padding-md;
-  border: 1px solid $border-color;
-  border-radius: $border-radius;
-  font-size: $font-size-md;
+  padding: var(--padding-md) var(--padding-lg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  color: var(--text-dark);
+  background-color: white;
   transition: border-color 0.2s ease;
+}
+
+.ui-input::placeholder {
+  color: var(--color-secondary);
+  opacity: 0.7;
 }
 
 .ui-input:focus {
   outline: none;
-  border-color: $primary;
-  box-shadow: $shadow-sm;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(8, 123, 255, 0.2);
 }
 
-.ui-input--disabled {
-  background-color: $bg-light;
+.ui-input[data-disabled="true"] {
+  background-color: var(--color-light);
+  color: var(--color-secondary);
   cursor: not-allowed;
+  opacity: 0.65;
 }
 </style>
