@@ -8,8 +8,8 @@ const meta: Meta<typeof UiInput> = {
   argTypes: {
     modelValue: { control: 'text' },
     isDisabled: { control: 'boolean' },
-    placeholder: { control: 'text' },
-  },
+    placeholder: { control: 'text' }
+  }
 }
 
 export default meta
@@ -18,14 +18,20 @@ type Story = StoryObj<typeof UiInput>
 
 export const Default: Story = {
   args: {
-    modelValue: '',
-    placeholder: 'Введите текст',
-  },
+    placeholder: 'Введите текст'
+  }
 }
 
 export const Disabled: Story = {
   args: {
-    isDisabled: true,
-    placeholder: 'Введите текст',
-  },
+    placeholder: 'Отключенное поле',
+    isDisabled: true
+  }
+}
+
+export const WithValue: Story = {
+  args: {
+    modelValue: 'Текст в поле',
+    placeholder: 'Введите текст'
+  }
 }
