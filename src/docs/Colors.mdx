@@ -168,8 +168,35 @@ import './../styles/colors.scss';
 ## Использование в компонентах
 
 ### В SCSS файлах
-scss
-.button-primary {
-  background-color: $primary; 
-  color: white;
-}
+
+`scss
+// Основные цвета
+--color-primary: #087bff;
+--color-secondary: #6c757d;
+--color-danger: #dc3545;
+--color-success: #28a745;
+--color-info: #17a2b8;
+--color-warning: #ffc107;
+--color-light: #f8f9fa;
+--color-dark: #343a40;
+
+// Текст
+--text-primary: var(--color-primary);
+--text-secondary: var(--color-secondary);
+--text-light: var(--color-light);
+--text-dark: var(--color-dark);
+
+// Фоны
+--bg-primary: var(--color-primary);
+--bg-secondary: var(--color-secondary);
+--bg-light: var(--color-light);
+--bg-dark: var(--color-dark);
+
+// Системные
+--border-color: #dee2e6;
+--border-radius: 0.25rem;
+
+// Отступы
+--padding-sm: 0.25rem;
+--padding-md: 0.5rem;
+--padding-lg: 0.75rem;
