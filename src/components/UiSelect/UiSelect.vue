@@ -1,65 +1,70 @@
 <template>
-  <div class="ui-select">
-    <select
-      :class="['ui-selectcontrol', { 'ui-selectcontrol--disabled': isDisabled }]"
-      :value="modelValue"
-      :disabled="isDisabled"
-      @change="$emit('update:modelValue', ($event.target as HTMLSelectElement).value)"
+  <select
+    :value="modelValue"
+    :disabled="isDisabled"
+    :data-disabled="isDisabled"
+    class="ui-select"
+    @change="handleChange"
+  >
+    <option 
+      v-for="(option, index) in options" 
+      :key="index" 
+      :value="option"
     >
-      <option v-for="option in options" :key="option" :value="option">
-        {{ option }}
-      </option>
-    </select>
-  </div>
+      {{ option }}
+    </option>
+  </select>
 </template>
 
 <script setup lang="ts">
-defineProps({
-  modelValue: {
-    type: String,
-    required: true,
-  },
-  isDisabled: {
-    type: Boolean,
-    default: false,
-  },
-  options: {
-    type: Array<string>,
-    required: true,
-  },
-})
+interface Props {
+  modelValue: string
+  isDisabled?: boolean
+  options: string[]
+}
 
-defineEmits(['update:modelValue'])
+interface Emits {
+  (e: 'update:modelValue', value: string): void
+}
+
+const props = defineProps<Props>()
+const emit = defineEmits<Emits>()
+
+const handleChange = (event: Event) => {
+  const target = event.target as HTMLSelectElement
+  emit('update:modelValue', target.value)
+}
 </script>
 
-<style scoped lang="scss">
-@use '../../styles/colors.scss' as *;
-
+<style scoped>
 .ui-select {
-  position: relative;
-}
-
-.ui-select__control {
   width: 100%;
-  padding: $padding-md;
-  border: 1px solid $border-color;
-  border-radius: $border-radius;
-  font-size: $font-size-md;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background: white url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 0.75rem center / 0.75em auto;
+  padding: var(--padding-md) var(--padding-lg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  color: var(--text-dark);
+  background-color: white;
   cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23343a40' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--padding-lg) center;
+  background-size: 16px;
+  padding-right: calc(var(--padding-lg) * 3);
 }
 
-.ui-select__control:focus {
+.ui-select:focus {
   outline: none;
-  border-color: $primary;
-  box-shadow: $shadow-sm;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(8, 123, 255, 0.2);
 }
 
-.ui-select__control--disabled {
-  background-color: $bg-light;
+.ui-select[data-disabled="true"] {
+  background-color: var(--color-light);
+  color: var(--color-secondary);
   cursor: not-allowed;
+  opacity: 0.65;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236c757d' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
 }
 </style>
