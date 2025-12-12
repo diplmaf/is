@@ -1,45 +1,71 @@
 <template>
   <button
-    :class="['ui-button', `ui-button--${variant}`]"
-    :disabled="isDisabled"
     :type="type"
-    @click="$emit('click')"
+    :disabled="isDisabled"
+    :data-layout="layout"
+    class="ui-button"
+    @click="handleClick"
   >
     <slot />
   </button>
 </template>
 
 <script setup lang="ts">
-defineProps({
-  variant: {
-    type: String,
-    default: 'primary',
-    validator: (v: string) => ['primary', 'secondary'].includes(v),
-  },
-  isDisabled: {
-    type: Boolean,
-    default: false,
-  },
-  type: {
-    type: String,
-    default: 'button',
-    validator: (v: string) => ['submit', 'button', 'reset'].includes(v),
-  },
+interface Props {
+  layout?: 'primary' | 'secondary'
+  isDisabled?: boolean
+  type?: 'submit' | 'button'
+}
+
+interface Emits {
+  (e: 'click', event: MouseEvent): void
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  layout: 'primary',
+  isDisabled: false,
+  type: 'button'
 })
 
-defineEmits(['click'])
+const emit = defineEmits<Emits>()
+
+const handleClick = (event: MouseEvent) => {
+  if (!props.isDisabled) {
+    emit('click', event)
+  }
+}
 </script>
 
-<style scoped lang="scss">
-@use '../../styles/colors.scss' as *;
-
+<style scoped>
 .ui-button {
-  padding: $padding-md;
-  border: none;
-  border-radius: $border-radius;
+  padding: var(--padding-md) var(--padding-lg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
   cursor: pointer;
-  font-size: $font-size-md;
   transition: all 0.2s ease;
+  min-width: 120px;
+}
+
+/* Data-attribute стилизация как в ТЗ */
+.ui-button[data-layout="primary"] {
+  background-color: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.ui-button[data-layout="primary"]:hover:not(:disabled) {
+  background-color: color-mix(in srgb, var(--color-primary) 90%, black);
+}
+
+.ui-button[data-layout="secondary"] {
+  background-color: var(--color-secondary);
+  color: var(--text-dark);
+  border-color: var(--color-secondary);
+}
+
+.ui-button[data-layout="secondary"]:hover:not(:disabled) {
+  background-color: color-mix(in srgb, var(--color-secondary) 90%, black);
 }
 
 .ui-button:disabled {
@@ -47,21 +73,8 @@ defineEmits(['click'])
   cursor: not-allowed;
 }
 
-.ui-button--primary {
-  background-color: $primary;
-  color: white;
-}
-
-.ui-button--primary:hover:not(:disabled) {
-  background-color: darken($primary, 10%);
-}
-
-.ui-button--secondary {
-  background-color: $secondary;
-  color: white;
-}
-
-.ui-button--secondary:hover:not(:disabled) {
-  background-color: darken($secondary, 10%);
+.ui-button:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 </style>
