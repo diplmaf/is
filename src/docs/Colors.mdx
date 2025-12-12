@@ -1,32 +1,176 @@
+
+import { Meta, Story } from '@storybook/blocks';
+import './../styles/colors.scss';
+
+<Meta title="Design System/Colors" />
+
+# Цветовая система
+
+## Обзор
+
+Эта документация описывает цветовую палитру, используемую в UI-компонентах библиотеки. Все цвета определены как CSS переменные в файле src/styles/colors.scss.
+
 ## Основные цвета
 
-- $primary: #007bff
-- $secondary: #6c757d
-- $danger: #dc3545
-- $success: #28a745
-- $info: #17a2b8
-- $warning: #ffc107
-- $light: #f8f9fa
-- $dark: #343a40
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin: 30px 0;">
+  
+  ### Primary
+  <ColorSwatch 
+    name="Primary"
+    color="var(--color-primary)"
+    value="#087bff"
+    textColor="white"
+  />
+  
+  ### Secondary
+  <ColorSwatch 
+    name="Secondary"
+    color="var(--color-secondary)"
+    value="#6c757d"
+    textColor="white"
+  />
+  
+  ### Success
+  <ColorSwatch 
+    name="Success"
+    color="var(--color-success)"
+    value="#28a745"
+    textColor="white"
+  />
+  
+  ### Danger
+  <ColorSwatch 
+    name="Danger"
+    color="var(--color-danger)"
+    value="#dc3545"
+    textColor="white"
+  />
+  
+  ### Warning
+  <ColorSwatch 
+    name="Warning"
+    color="var(--color-warning)"
+    value="#ffc107"
+    textColor="#343a40"
+  />
+  
+  ### Info
+  <ColorSwatch 
+    name="Info"
+    color="var(--color-info)"
+    value="#17a2b8"
+    textColor="white"
+  />
+  
+  ### Light
+  <ColorSwatch 
+    name="Light"
+    color="var(--color-light)"
+    value="#f8f9fa"
+    textColor="#343a40"
+  />
+  
+  ### Dark
+  <ColorSwatch 
+    name="Dark"
+    color="var(--color-dark)"
+    value="#343a40"
+    textColor="white"
+  />
+</div>
 
-## Текстовые цвета
+## Цвета текста
 
-- $text-primary
-- $text-secondary
-- $text-light
-- $text-dark
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin: 30px 0;">
+  
+  ### Text Primary
+  <ColorSwatch 
+    name="Text Primary"
+    color="var(--text-primary)"
+    value="#087bff"
+    textColor="white"
+  />
+  
+  ### Text Secondary
+  <ColorSwatch 
+    name="Text Secondary"
+    color="var(--text-secondary)"
+    value="#6c757d"
+    textColor="white"
+  />
+  
+  ### Text Light
+  <ColorSwatch 
+    name="Text Light"
+    color="var(--text-light)"
+    value="#f8f9fa"
+    textColor="#343a40"
+  />
+  
+  ### Text Dark
+  <ColorSwatch 
+    name="Text Dark"
+    color="var(--text-dark)"
+    value="#343a40"
+    textColor="white"
+  />
+</div>
 
 ## Фоновые цвета
 
-- $bg-primary
-- $bg-secondary
-- $bg-light
-- $bg-dark
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin: 30px 0;">
+  
+  ### Background Primary
+  <ColorSwatch 
+    name="BG Primary"
+    color="var(--bg-primary)"
+    value="#087bff"
+    textColor="white"
+  />
+  
+  ### Background Secondary
+  <ColorSwatch 
+    name="BG Secondary"
+    color="var(--bg-secondary)"
+    value="#6c757d"
+    textColor="white"
+  />
+  
+  ### Background Light
+  <ColorSwatch 
+    name="BG Light"
+    color="var(--bg-light)"
+    value="#f8f9fa"
+    textColor="#343a40"
+  />
+  
+  ### Background Dark
+  <ColorSwatch 
+    name="BG Dark"
+    color="var(--bg-dark)"
+    value="#343a40"
+    textColor="white"
+  />
+</div>
 
-## Другие
+## Системные цвета
 
-- $border-color
-- $border-radius
-- $padding-*
-- $font-size-*
-- $shadow-*
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin: 30px 0;">
+  
+  ### Border Color
+  <ColorSwatch 
+    name="Border"
+    color="var(--border-color)"
+    value="#dee2e6"
+    textColor="#343a40"
+  />
+</div>
+
+## Использование в компонентах
+
+### В SCSS файлах
+`scss
+.button-primary {
+  background-color: $primary; // SCSS переменная
+  color: white;
+}
