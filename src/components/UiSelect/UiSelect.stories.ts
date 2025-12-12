@@ -8,10 +8,8 @@ const meta: Meta<typeof UiSelect> = {
   argTypes: {
     modelValue: { control: 'text' },
     isDisabled: { control: 'boolean' },
-    options: {
-      control: 'object',
-    },
-  },
+    options: { control: 'object' }
+  }
 }
 
 export default meta
@@ -20,15 +18,20 @@ type Story = StoryObj<typeof UiSelect>
 
 export const Default: Story = {
   args: {
-    modelValue: 'Опция 1',
-    options: ['Опция 1', 'Опция 2', 'Опция 3'],
-  },
+    options: ['Опция 1', 'Опция 2', 'Опция 3']
+  }
 }
 
 export const Disabled: Story = {
   args: {
-    isDisabled: true,
-    modelValue: 'Опция 1',
     options: ['Опция 1', 'Опция 2', 'Опция 3'],
-  },
+    isDisabled: true
+  }
+}
+
+export const WithSelected: Story = {
+  args: {
+    modelValue: 'Опция 2',
+    options: ['Опция 1', 'Опция 2', 'Опция 3']
+  }
 }
